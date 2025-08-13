@@ -8,9 +8,32 @@ import json
 import sys
 from pathlib import Path
 
+
+def print_banner():
+    banner = r"""
+
+
+ ____    _    ____ _  ___   _ ____  
+| __ )  / \  / ___| |/ / | | |  _ \ 
+|  _ \ / _ \| |   | ' /| | | | |_) |
+| |_) / ___ \ |___| . \| |_| |  __/ 
+|____/_/   \_\____|_|\_\\___/|_|    
+
+ _                   _        __  
+| |__ _  _   _ _ ___| |_ _ _ /  \ 
+| '_ \ || | | '_/ -_)  _| '_| () |
+|_.__/\_, | |_| \___|\__|_|  \__/ 
+      |__/                        
+ 
+
+"""
+    print("\033[91m" + banner + "\033[0m")
+
+
 # Configuración
 CONFIG_FILE = Path.home() / '.daily_backup_config.json'
 LOG_FILE = Path.home() / 'daily_backup.log'
+
 
 def load_config():
     """Carga la configuración desde el archivo de configuración."""
@@ -119,7 +142,9 @@ def perform_backup():
     except Exception as e:
         log_message(f"Error al realizar la copia de seguridad: {str(e)}")
 
+
 def main():
+    print_banner() 
     if len(sys.argv) == 1:
         # Modo configuración
         setup()
